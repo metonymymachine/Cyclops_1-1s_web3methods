@@ -61,11 +61,11 @@ export const onboard = Onboard({
 });
 
 const contractABI = abi;
-const contractAddress = "0x019f5629A978bdcB6e26Dc164f5922508703f63c";
+const contractAddress = "0x04148d355810e9c882d28d3B2f5C9bb8bc260b95";
 
 const theContract = new web3.eth.Contract(contractABI, contractAddress);
 
-const publicprice  = "15000000000000000";
+const publicprice = "15000000000000000";
 const presaleprice = "00000000000000000";
 
 const loadCurrentSupply = async () => {
@@ -134,7 +134,7 @@ export const connectWallet = async () => {
   await onboard.walletSelect();
   await onboard.walletCheck();
 
-  $(".metamask-button-text").text('Mint');
+  $(".metamask-button-text").text("Mint");
   $(".alert").hide();
   //hide please connect wallet text
   $(".test-metamask-button").text(`${onboard.getState().address}`);
@@ -176,15 +176,15 @@ export const getCurrentWalletConnected = async () => {
   }
 };
 
-export const mintPresale = async (amount) => {
+export const mintPresale = async (id) => {
   //check if onboard address is empty then connect wallet
   if (onboard.getState().address) {
     //  window.contract = new web3.eth.Contract(contractABI, contractAddress);
     const transactionParameters = {
       from: onboard.getState().address,
       to: contractAddress,
-      value: web3.utils.toHex(presaleprice * amount),
-      data: theContract.methods.mintPresale(amount).encodeABI(),
+      value: web3.utils.toHex(presaleprice * 1),
+      data: theContract.methods.purchase(id, "1", "0x").encodeABI(),
     };
     try {
       const txHash = await window.ethereum.request({

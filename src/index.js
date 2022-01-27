@@ -29,8 +29,8 @@ global.mintPublic = (amount) => {
 };
 
 //Presale mint
-global.mintPresale = (amount) => {
-  mintPresale(amount);
+global.mintPresale = (id) => {
+  mintPresale(id);
 };
 
 //bundle price minting
